@@ -23,14 +23,19 @@ The following two parts are run by "TweetNYAvg.py":
 - A division on the webpage of Google Maps will display the status and rate. Another websocket on port 8081 will send the rate and status information to frontend in real-time.
 
 #### Human-readable System and Data Visulization
-The following two parts are run by "index.html":
-An HTML page with Google Map API displays each of the location with a pin on the map, where the map is dynamic and supports all Google Map functions. Although the locations are just plotted on a map, other data are also collected like the text of the Tweet and the retweeting numbers.
+The following three parts are run by "index.html":
+- The websocket on port 8080 will intake the information of real-time location of Tweets. An HTML page with Google Map API displays each of the location with a pin on the map, where the map is dynamic and supports all Google Map functions. Although the locations are just plotted on a map, other data are also collected like the text of the Tweet and the retweeting numbers.
+
+- The real-time Tweets locations are also displayed on the left-bottom corner of the webpage.
+
+- The websocket on port 8081 will intake information of real-time rate and status. The real-time rate of Tweets is also displayed on the left-bottom corner of the webpage. A colored alert status follows the rate, once the status is red, it turns red, once the status is yellow, it turns yellow. The alert gives a obvious display of the current status.
 
 
 ### How to start
 1. Start a local Redis Server with default settings. (If not installed, it can be installed by Homebrew: 
     ```brew install redis```)
-2. run StartServer.sh (which will run TwitterGet.py)
-3. open index.html
+2. Run StartInsert.sh (which starts a websocket on 8080 and runs TweetNYInsert.py)
+3. Run StartAvg.sh (which starts a websocket on 8081 and runs TweetNYAvg.py)
+4. Open index.html
 
 Enjoy!
