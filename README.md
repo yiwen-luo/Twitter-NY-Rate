@@ -3,11 +3,17 @@
 ### Introduction
 This application will tell whether any breaking news happens in the Great New York Area by monitoring the rates of twitter in the ares.
 
-The application consists of two main parts, the data streaming part and monitoring part:
+The application consists of two main parts, the data streaming part and monitoring part, where the data steaming part retrieves and displays the data in real-time, and the monitoring part keeps an eye on the rate of tweets people post in Great New York Area.
 
-The data streaming part retrieves tweets around Great New York Area with geographic locations from Twitter in realtime. Websocketd will send the location data through a websocket in realtime. An HTML page with Google Map API displays each of the location with a pin on the map, where the map is dynamic and supports all Google Map functions.
+Main technology involved are: Tweepy API, Google Maps API, Redis, Websocketd
 
-Although the locations are just plotted on a map, other data are also collected like the text of the Tweet and the retweeting numbers. With other information, it is possbile to conduct multiple analyses, such as trend analyses, emotion analyses, etc.
+
+### Components of Application
+- The data streaming part retrieves tweets around Great New York Area with geographic locations from Twitter in realtime. Websocketd will send the location data through a websocket in realtime. An HTML page with Google Map API displays each of the location with a pin on the map, where the map is dynamic and supports all Google Map functions. Although the locations are just plotted on a map, other data are also collected like the text of the Tweet and the retweeting numbers.
+
+- The data streaming part also takes down the time each of useful tweets is received and send it to a Redis server for in-memory storage. The message stored in Redis includs two information, the time this tuple of tweet is received and the time difference between last message and current message, a.k.a delta of time. 
+
+- The moniroting part retrieves tuples 
 
 
 ### Data Stream
